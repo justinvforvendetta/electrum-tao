@@ -1,0 +1,17 @@
+# If you want electrum to appear in a linux app launcher ("start menu"), install this by doing:
+# sudo desktop-file-install electrum-tao.desktop
+
+[Desktop Entry]
+Comment=Lightweight Tao Client
+Exec=electrum-tao %u
+GenericName[en_US]=Electrum-TAO
+GenericName=Electrum-TAO
+Icon=electrum-tao
+Name[en_US]=Electrum Tao Wallet
+Name=Electrum Tao Wallet
+Categories=Network;
+StartupNotify=false
+Terminal=false
+Type=Application
+MimeType=x-scheme-handler/tao;
+
