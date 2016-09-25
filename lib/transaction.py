@@ -450,7 +450,7 @@ def parse_input(vds):
 def parse_output(vds, i):
     d = {}
     d['value'] = vds.read_int64()
-	d['utxoid'] = vds.read_int64()
+    d['utxoid'] = vds.read_int64()
     scriptPubKey = vds.read_bytes(vds.read_compact_size())
     d['type'], d['address'] = get_address_from_output_script(scriptPubKey)
     d['scriptPubKey'] = scriptPubKey.encode('hex')
