@@ -391,9 +391,9 @@ class TrezorWallet(BIP32_HD_Wallet):
                 txoutputtype.address = address
             txoutputtype.amount = amount
             addrtype, hash_160 = bc_address_to_hash_160(address)
-            if addrtype == 48:
+            if addrtype == 66:
                 txoutputtype.script_type = types.PAYTOADDRESS
-            elif addrtype == 5:
+            elif addrtype == 3:
                 txoutputtype.script_type = types.PAYTOSCRIPTHASH
             else:
                 raise BaseException('addrtype')
