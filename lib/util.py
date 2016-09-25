@@ -189,12 +189,12 @@ def age(from_date, since_date = None, target_tz=None, include_seconds=False):
         return "over %d years ago" % (round(distance_in_minutes / 525600))
 
 block_explorer_info = {
-    'blockexperts.com/tao/': ('http://blockexperts.com/tao/',
+    'explorer.tao.network/': ('http://explorer.tao.network/',
                         {'tx': 'tx', 'addr': 'address'}),
 }
 
 def block_explorer(config):
-    return config.get('block_explorer', 'blockexperts.com/tao/')
+    return config.get('block_explorer', 'explorer.tao.network/')
 
 def block_explorer_tuple(config):
     return block_explorer_info.get(block_explorer(config))
