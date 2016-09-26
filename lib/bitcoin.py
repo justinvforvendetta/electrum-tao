@@ -37,6 +37,14 @@ MIN_RELAY_TX_FEE = 1000000
 RECOMMENDED_FEE = 1000000
 COINBASE_MATURITY = 100
 
+# NOTE: This switch represents more of a hack than an option.
+# If you change its value, be sure to delete your 'recent_servers' file.
+# You may also need to remove the 'server' option from your config file.
+# Otherwise, you may end up getting headers for the wrong chain!
+PUBKEY_ADDR = 66
+SCRIPT_ADDR = 3 
+WIF = 76 
+
 # AES encryption
 EncodeAES = lambda secret, s: base64.b64encode(aes.encryptData(secret,s))
 DecodeAES = lambda secret, e: aes.decryptData(secret, base64.b64decode(e))
@@ -236,7 +244,7 @@ def public_key_to_bc_address(public_key):
     h160 = hash_160(public_key)
     return hash_160_to_bc_address(h160)
 
-def hash_160_to_bc_address(h160, addrtype = 66):
+def hash_160_to_bc_address(h160, addrtype = PUBKEY_ADDR):
     vh160 = chr(addrtype) + h160
     h = Hash(vh160)
     addr = vh160 + h[0:4]
@@ -324,14 +332,14 @@ def PrivKeyToSecret(privkey):
     return privkey[9:9+32]
 
 
-def SecretToASecret(secret, compressed=False, addrtype=66):
-    vchIn = chr((addrtype+128)&255) + secret
+def SecretToASecret(secret, compressed=False, addrtype=PUBKEY_ADDR):
+    vchIn = chr(addrtype) + secret
     if compressed: vchIn += '\01'
     return EncodeBase58Check(vchIn)
 
-def ASecretToSecret(key, addrtype=66):
+def ASecretToSecret(key, addrtype=PUBKEY_ADDR):
     vch = DecodeBase58Check(key)
-    if vch and vch[0] == chr((addrtype+128)&255):
+    if vch and vch[0] == chr(addrtype):
         return vch[1:]
     else:
         return False
@@ -386,6 +394,8 @@ def is_address(addr):
     try:
         addrtype, h = bc_address_to_hash_160(addr)
     except Exception:
+        return False
+    if addrtype not in [PUBKEY_ADDR, SCRIPT_ADDR]:
         return False
     return addr == hash_160_to_bc_address(h, addrtype)
 
@@ -799,4 +809,4 @@ def bip32_public_derivation(xpub, branch, sequence, testnet=False):
 def bip32_private_key(sequence, k, chain):
     for i in sequence:
         k, chain = CKD_priv(k, chain, i)
-    return SecretToASecret(k, True)
+    return SecretToASecret(k, True, WIF)

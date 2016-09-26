@@ -65,6 +65,6 @@ setup(
     author="taoDEV",
     author_email="taocoin@twitter",
     license="GNU GPLv3",
-    url="http://electrum-tao.space",
+    url="http://electrum.tao.network",
     long_description="""Lightweight Tao Wallet"""
 )
