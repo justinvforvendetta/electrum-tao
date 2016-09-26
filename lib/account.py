@@ -226,7 +226,7 @@ class OldAccount(Account):
         secexp = ( secexp + self.get_sequence(self.mpk, for_change, n) ) % order
         pk = number_to_string( secexp, generator_secp256k1.order() )
         compressed = False
-        return SecretToASecret( pk, compressed, WIF )
+        return SecretToASecret( pk, compressed, bitcoin.WIF )
 
 
     def get_private_key(self, sequence, wallet, password):
