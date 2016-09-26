@@ -226,7 +226,7 @@ class OldAccount(Account):
         secexp = ( secexp + self.get_sequence(self.mpk, for_change, n) ) % order
         pk = number_to_string( secexp, generator_secp256k1.order() )
         compressed = False
-        return SecretToASecret( pk, compressed )
+        return SecretToASecret( pk, compressed, bitcoin.WIF )
 
 
     def get_private_key(self, sequence, wallet, password):
@@ -389,7 +389,7 @@ class BIP32_Account_2of2(BIP32_Account):
 
     def pubkeys_to_address(self, pubkeys):
         redeem_script = Transaction.multisig_script(sorted(pubkeys), 2)
-        address = hash_160_to_bc_address(hash_160(redeem_script.decode('hex')), 5)
+        address = hash_160_to_bc_address(hash_160(redeem_script.decode('hex')), bitcoin.SCRIPT_ADDR)
         return address
 
     def get_address(self, for_change, n):
