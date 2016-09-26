@@ -29,7 +29,7 @@ To run Electrum from this directory, just do:
 
 To start Electrum from your web browser, see
 --------------------------------------------
-http://electrum-tao.space/Tao_URIs.html
+http://electrum.tao.network/Tao_URIs.html
 
 To update your copy of the electrum client:
 -------------------------------------------
@@ -82,7 +82,7 @@ On Mac OS X:
   
   ARCHFLAGS="-arch i386 -arch x86_64" sudo python setup-release.py py2app --includes sip
 
-  sudo hdiutil create -fs HFS+ -volname "Electrum-TAO" -srcfolder dist/Electrum-TAO.app dist/electrum-tao-VERSION-macosx.dmg
+  sudo hdiutil create -fs HFS+ -volname "Electrum-Tao" -srcfolder dist/Electrum-Tao.app dist/electrum-tao-VERSION-macosx.dmg
   
   alternate official build method:
   
@@ -96,7 +96,7 @@ export VERSION=2.0.0
 
 pyinstaller windows.spec
 
-zip -r dist/reddcoin-electrum-$VERSION-win.zip dist/reddcoin-electrum.exe
+zip -r dist/tao-electrum-$VERSION-win.zip dist/tao-electrum.exe
 
 On Mac OS X:
 
@@ -104,7 +104,7 @@ export VERSION=2.0.0
 
 pyinstaller macosx.spec
 
-sudo hdiutil create -fs HFS+ -volname "Reddcoin Electrum" -srcfolder "dist/Reddcoin Electrum.app" dist/reddcoin-electrum-$VERSION-mac.dmg
+sudo hdiutil create -fs HFS+ -volname "Tao Electrum" -srcfolder "dist/Tao Electrum.app" dist/tao-electrum-$VERSION-mac.dmg
 
 
 [![Visit our IRC Chat!](https://kiwiirc.com/buttons/irc.freenode.net/tao.png)](https://kiwiirc.com/client/irc.freenode.net/?nick=tao|?&theme=cli#tao)

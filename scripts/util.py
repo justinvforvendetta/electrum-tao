@@ -7,7 +7,7 @@ from electrum_tao.network import filter_protocol, parse_servers
 def get_peers():
     # 1. start interface and wait for connection
     q = Queue.Queue()
-    interface = electrum.Interface('electrum-tao.space:50002:s', q)
+    interface = electrum.Interface('electrum.tao.network:50002:s', q)
     interface.start()
     i, r = q.get()
     if not interface.is_connected():
